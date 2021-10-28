@@ -1,6 +1,5 @@
 package com.example.kurssi.service;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 import com.example.kurssi.data.Course;
@@ -19,8 +18,4 @@ public interface ICourseService {
     List<Course> getCoursesOfStudent(long studentId);
 
     boolean addStudentToCourse(long studentId, long courseId);
-
-    List<Student> readStudentsFromFile(String filePath) throws FileNotFoundException;
-
-    List<Course> readCoursesFromFile(String filePath) throws FileNotFoundException;
 }
