@@ -5,8 +5,9 @@ import com.example.kurssi.data.Course;
 public class OnlineCourse extends Course {
     private String website;
 
-    public OnlineCourse(String name, String website) {
+    public OnlineCourse(String name, String teacher, String website) {
         this.name = name;
+        this.teacher = teacher;
         this.website = website;
         this.id = idCount++;
     }

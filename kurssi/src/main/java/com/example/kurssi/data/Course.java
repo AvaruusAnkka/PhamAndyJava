@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Course {
     protected Long id;
-    protected long idCount = 0;
+    protected static long idCount = 0;
     protected String name;
-    private String teacher;
+    protected String teacher;
     private int limit = 25;
     private List<Student> attendees = new ArrayList<>();
 

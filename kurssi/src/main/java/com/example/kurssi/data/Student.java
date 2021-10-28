@@ -1,8 +1,8 @@
 package com.example.kurssi.data;
 
 public class Student {
-    private int id;
-    private static int idCount = 0;
+    private long id;
+    private static long idCount = 0;
     private String fname;
     private String lname;
 
@@ -12,7 +12,7 @@ public class Student {
         this.lname = lname;
     }
 
-    public int getId() {
+    public long getId() {
         return this.id;
     }
 

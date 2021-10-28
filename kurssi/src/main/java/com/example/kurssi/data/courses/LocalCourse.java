@@ -5,10 +5,12 @@ import com.example.kurssi.data.Course;
 public class LocalCourse extends Course {
     private String classroom;
 
-    public LocalCourse(String name, String classroom) {
-            this.name = name;
-            this.classroom = classroom;
-        }
+    public LocalCourse(String name, String teacher, String classroom) {
+        this.name = name;
+        this.teacher = teacher;
+        this.classroom = classroom;
+        this.id = idCount++;
+    }
     public String getClassroom() {
         return this.classroom;
     }
