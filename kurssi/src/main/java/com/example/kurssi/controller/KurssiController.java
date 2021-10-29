@@ -34,8 +34,10 @@ public class KurssiController {
     }
 
     @GetMapping("/students/{id}")
-    public Student controllerGetStudentById(@PathVariable long id) {
-        return c.getStudentById(id);
+    public String controllerGetStudentById(@PathVariable long id) {
+        String s = c.getStudentById(id).toString();
+        s += "\n" + (c.getCoursesOfStudent(id)).toString().replace("[", "").replaceAll("]", "").replace(", ", "\n");
+        return s;
     }
 
     @GetMapping("/courses/{id}")
