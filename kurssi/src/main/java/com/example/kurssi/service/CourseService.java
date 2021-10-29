@@ -58,25 +58,11 @@ public class CourseService implements ICourseService {
         return null;
     }
 
-    public Student findStudent(long studentId) {
-        for (Student s : students) {
-            if (s.getId() == studentId) return s;
-        }
-        return null;
-    }
-
-    public Course findCourse(long courseId) {
-        for (Course c : courses) {
-            if (c.getId() == courseId) return c;
-        }
-        return null;
-    }
-
     @Override
     public boolean addStudentToCourse(long studentId, long courseId) {
         
-        Student student = findStudent(studentId);
-        Course course = findCourse(courseId);
+        Student student = getStudentById(studentId);
+        Course course = getCourseById(courseId);
 
         if (student != null && course != null) {
             course.addStudent(student);
@@ -95,5 +81,12 @@ public class CourseService implements ICourseService {
             }
         }
         return studentList;
+    }
+
+    public List<Student> getStudentsByCourse(long courseId) {
+        for (Course c : courses) {
+            if (c.getId() == courseId) return c.getAttendees();
+        }
+        return null;
     }
 }

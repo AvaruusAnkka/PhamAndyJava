@@ -41,8 +41,10 @@ public class KurssiController {
     }
 
     @GetMapping("/courses/{id}")
-    public Course controllerGetCourseById(@PathVariable long id) {
-        return c.getCourseById(id);
+    public String controllerGetCourseById(@PathVariable long id) {
+        String s = c.getCourseById(id).toString();
+        s += c.getStudentsByCourse(id).toString().replace("[", "").replaceAll("]", "").replace(", ", "\n");
+        return s;
     }
 
     @PostMapping("add")
@@ -51,8 +53,8 @@ public class KurssiController {
         Long courseId = Long.parseLong(jsonMapping.get("cid").toString());
 
         if (c.addStudentToCourse(studentId, courseId) == true) {
-            String student = (c.findStudent(studentId)).toString();
-            String course = (c.findCourse(courseId)).toString();
+            String student = (c.getStudentById(studentId)).toString();
+            String course = (c.getCourseById(courseId)).toString();
             return student + " ---> " + course;
         }
         return "Error 1.";
