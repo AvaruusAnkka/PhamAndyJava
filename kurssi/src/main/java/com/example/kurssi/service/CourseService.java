@@ -14,8 +14,8 @@ public class CourseService implements ICourseService {
     public CourseService() {
         CourseFileService c = new CourseFileService();
         try {
-            this.students = c.readStudentsFromFile("Students.txt");
-            this.courses = c.readCoursesFromFile("Courses.txt");
+            this.students = c.readStudentsFromFile("kurssi\\src\\main\\java\\com\\example\\kurssi\\data\\Students.txt");
+            this.courses = c.readCoursesFromFile("kurssi\\src\\main\\java\\com\\example\\kurssi\\data\\Courses.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
