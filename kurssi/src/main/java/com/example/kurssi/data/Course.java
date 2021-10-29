@@ -8,8 +8,7 @@ public class Course {
     protected static long idCount = 0;
     protected String name;
     protected String teacher;
-    private int limit = 25;
-    private List<Student> attendees = new ArrayList<>();
+    private List<Student> attendees = new ArrayList<>(25);
 
     public long getId() {
         return this.id;
@@ -31,20 +30,17 @@ public class Course {
         this.teacher = teacher;
     }
 
-    public void addStudent(Student student) {
-        if (attendees.size() < limit) attendees.add(student);
+    public boolean addStudent(Student student) {
+        try {
+            attendees.add(student);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void removeStudent(Student student) {
         attendees.remove(student);
-    }
-
-    public int getLimit() {
-        return this.limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
     }
 
     public List<Student> getAttendees() {

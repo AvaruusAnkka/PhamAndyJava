@@ -6,8 +6,6 @@ import java.util.List;
 
 import com.example.kurssi.data.Course;
 import com.example.kurssi.data.Student;
-import com.example.kurssi.data.courses.LocalCourse;
-import com.example.kurssi.data.courses.OnlineCourse;
 
 public class CourseService implements ICourseService {
     private List<Student> students = new ArrayList<>();
@@ -49,15 +47,36 @@ public class CourseService implements ICourseService {
         return null;
     }
 
-    @Override
-    public List<Course> getCoursesOfStudent(long studentId) {
-        // TODO Auto-generated method stub
+    public Student findStudent(long studentId) {
+        for (Student s : students) {
+            if (s.getId() == studentId) return s;
+        }
+        return null;
+    }
+
+    public Course findCourse(long courseId) {
+        for (Course c : courses) {
+            if (c.getId() == courseId) return c;
+        }
         return null;
     }
 
     @Override
     public boolean addStudentToCourse(long studentId, long courseId) {
-        // TODO Auto-generated method stub
+        
+        Student student = findStudent(studentId);
+        Course course = findCourse(courseId);
+
+        if (student != null && course != null) {
+            course.addStudent(student);
+            return true;
+        }
         return false;
+    }
+
+    @Override
+    public List<Course> getCoursesOfStudent(long studentId) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }
