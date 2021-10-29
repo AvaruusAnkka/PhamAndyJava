@@ -31,6 +31,17 @@ public class CourseService implements ICourseService {
         return this.courses;
     }
 
+    public String getOnlineCourses() {
+        String onlineCourses = "";
+        for (Course c : courses) {
+            String[] data = c.toString().split(" - ");
+            if (data.length == 3) {
+                onlineCourses += c.toString() + "\n";
+            }
+        }
+        return onlineCourses;
+    }
+
     @Override
     public Student getStudentById(long studentId) {
         for (Student i : students) {

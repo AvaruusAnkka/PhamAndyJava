@@ -7,7 +7,6 @@ import com.example.kurssi.data.Course;
 import com.example.kurssi.data.Student;
 import com.example.kurssi.service.CourseService;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +26,11 @@ public class KurssiController {
     @GetMapping("/courses")
     public List<Course> controllerGetCourses() {
         return c.getCourses();
+    }
+
+    @GetMapping("/onlinecourses")
+    public String controllerGetOnlineCourses() {
+        return c.getOnlineCourses();
     }
 
     @GetMapping("/students/{id}")

@@ -51,4 +51,8 @@ public class Course {
     public String toString() {
         return getName() + " - " + getTeacher();
     }
+
+    public long[] toArray() {
+        return null;
+    }
 }
