@@ -36,7 +36,7 @@ public class CourseService implements ICourseService {
         for (Course c : courses) {
             String[] data = c.toString().split(" - ");
             if (data.length == 3) {
-                onlineCourses += c.toString() + "\n";
+                onlineCourses += c.getName() + ",";
             }
         }
         return onlineCourses;
