@@ -31,12 +31,11 @@ public class Course {
     }
 
     public boolean addStudent(Student student) {
-        try {
-            attendees.add(student);
-            return true;
-        } catch (Exception e) {
-            return false;
+        for (Student a : attendees) {
+            if (a == student) return false;
         }
+        attendees.add(student);
+        return true;
     }
 
     public void removeStudent(Student student) {

@@ -30,21 +30,22 @@ public class KurssiController {
 
     @GetMapping("/onlinecourses")
     public String controllerGetOnlineCourses() {
-        return c.getOnlineCourses();
+        return c.getOnlineCourses().replaceAll(",", "\n");
     }
 
     @GetMapping("/students/{id}")
     public String controllerGetStudentById(@PathVariable long id) {
         String s = c.getStudentById(id).toString();
-        s += "\n" + (c.getCoursesOfStudent(id)).toString().replace("[", "").replaceAll("]", "").replace(", ", "\n");
+        for (Course courses : c.getCoursesOfStudent(id)) {
+            s += "\n" + courses.getName();
+        }
         return s;
     }
 
     @GetMapping("/courses/{id}")
     public String controllerGetCourseById(@PathVariable long id) {
-        String s = c.getCourseById(id).toString();
-        s += c.getStudentsByCourse(id).toString().replace("[", "").replaceAll("]", "").replace(", ", "\n");
-        return s;
+        String[] course = c.getCourseById(id).toString().split(" - ");
+        return course[0] + "\n" + c.getStudentsByCourse(id).toString().replace("[", "").replaceAll("]", "").replace(", ", "\n");
     }
 
     @PostMapping("add")
@@ -54,8 +55,8 @@ public class KurssiController {
 
         if (c.addStudentToCourse(studentId, courseId) == true) {
             String student = (c.getStudentById(studentId)).toString();
-            String course = (c.getCourseById(courseId)).toString();
-            return student + " ---> " + course;
+            String[] course = (c.getCourseById(courseId)).toString().split(" - ");
+            return student + " ---> " + course[0];
         }
         return "Error 1.";
     }

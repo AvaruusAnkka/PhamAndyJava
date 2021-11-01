@@ -65,8 +65,7 @@ public class CourseService implements ICourseService {
         Course course = getCourseById(courseId);
 
         if (student != null && course != null) {
-            course.addStudent(student);
-            return true;
+            return course.addStudent(student);
         }
         return false;
     }
