@@ -30,7 +30,7 @@ public class KurssiController {
 
     @GetMapping("/onlinecourses")
     public String controllerGetOnlineCourses() {
-        return c.getOnlineCourses().replaceAll(",", "\n");
+        return c.getOnlineCourses().replace(",", "\n");
     }
 
     @GetMapping("/students/{id}")
@@ -45,7 +45,7 @@ public class KurssiController {
     @GetMapping("/courses/{id}")
     public String controllerGetCourseById(@PathVariable long id) {
         String[] course = c.getCourseById(id).toString().split(" - ");
-        return course[0] + "\n" + c.getStudentsByCourse(id).toString().replace("[", "").replaceAll("]", "").replace(", ", "\n");
+        return course[0] + "\n" + c.getStudentsByCourse(id).toString().replace("[", "").replace("]", "").replace(", ", "\n");
     }
 
     @PostMapping("add")
@@ -53,7 +53,7 @@ public class KurssiController {
         Long studentId = Long.parseLong(jsonMapping.get("sid").toString());
         Long courseId = Long.parseLong(jsonMapping.get("cid").toString());
 
-        if (c.addStudentToCourse(studentId, courseId) == true) {
+        if (c.addStudentToCourse(studentId, courseId)) {
             String student = (c.getStudentById(studentId)).toString();
             String[] course = (c.getCourseById(courseId)).toString().split(" - ");
             return student + " ---> " + course[0];

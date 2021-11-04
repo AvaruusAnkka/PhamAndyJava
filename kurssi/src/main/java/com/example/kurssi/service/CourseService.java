@@ -2,6 +2,7 @@ package com.example.kurssi.service;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.example.kurssi.data.Course;
@@ -86,6 +87,6 @@ public class CourseService implements ICourseService {
         for (Course c : courses) {
             if (c.getId() == courseId) return c.getAttendees();
         }
-        return null;
+        return Collections.emptyList();
     }
 }
